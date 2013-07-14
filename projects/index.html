@@ -6,7 +6,7 @@
   </head>
   <body>
     <!-- nav -->
-    <div><a href="#/">By Name</a> | <a href="#/search">By Tag</a></div>
+    <div><a href="#/">Home</a> | <a href="#/search">Search</a></div>
     <!-- placeholder for views -->
     <div ng-view=""></div>
     <script type="text/javascript">
@@ -15,26 +15,46 @@
         $routeProvider
           .when("/", {
             controller: "ProjectsController",
-            templateUrl: "byName.html"
+            templateUrl: "home.html"
+          })
+          .when("/details/:id", {
+            controller: "ProjectsController",
+            templateUrl: "details.html"
           })
           .when("/search", {
             controller: "ProjectsController",
-            templateUrl: "byTag.html"
+            templateUrl: "search.html"
           })
           .otherwise({ redirectTo: "/" });
       });
       projectsApp.service("projectsService", function() {
         var projects = [
-          { name: "Landscape Modeler", employer: "Esri", tags: "javascript, arcgis, dojo" },
-          { name: "Oregon Imagery Explorer", employer: "Esri", tags: "javascript, arcgis, dojo" },
-          { name: "Community Maps", employer: "Esri", tags: "javascript, arcgis, dojo, bootstrap" }
+          { id:1, name: "Landscape Modeler", employer: "Esri", tags: "javascript, arcgis, dojo" },
+          { id:2, name: "Oregon Imagery Explorer", employer: "Esri", tags: "javascript, arcgis, dojo" },
+          { id:3, name: "Community Maps", employer: "Esri", tags: "javascript, arcgis, dojo, bootstrap" }
         ];
         this.getProjects = function() {
           return projects;
         };
+        this.getProject = function(id) {
+          for (var i = 0; i < projects.length; i++) {
+            if (projects[i].id === id) {
+                return projects[i];
+            }
+          }
+          return null;
+        };
       });
-      projectsApp.controller("ProjectsController", function($scope, projectsService) {
+      projectsApp.controller("ProjectsController", function($scope, $routeParams, projectsService) {
         $scope.projects = projectsService.getProjects();
+        $scope.project = {};
+        init();
+        function init() {
+          var projectId = $routeParams.id ? parseInt($routeParams.id) : 0;
+          if (projectId > 0) {
+            $scope.project = projectsService.getProject(projectId);
+          }
+        }
       });
     </script>
   </body>

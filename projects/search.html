@@ -3,7 +3,7 @@
   <input type="text" ng-model="filter.tag" placeholder="Search by tag">
   <br />
   <ul>
-    <li data-ng-repeat="project in projects | filter:filter.tag | orderBy:'name'">{{ project.name }} - {{ project.employer }}
+    <li data-ng-repeat="project in projects | filter:filter.name | orderBy:'name'"><a ng-href="#/details/{{project.id}}">{{ project.name }}</a> - {{ project.employer }}
       <br />
       <small>{{ project.tags }}</small>
     </li>
