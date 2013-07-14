@@ -23,12 +23,18 @@
           })
           .otherwise({ redirectTo: "/" });
       });
-      projectsApp.controller("ProjectsController", function($scope) {
-        $scope.projects = [
+      projectsApp.service("projectsService", function() {
+        var projects = [
           { name: "Landscape Modeler", employer: "Esri", tags: "javascript, arcgis, dojo" },
           { name: "Oregon Imagery Explorer", employer: "Esri", tags: "javascript, arcgis, dojo" },
           { name: "Community Maps", employer: "Esri", tags: "javascript, arcgis, dojo, bootstrap" }
         ];
+        this.getProjects = function() {
+          return projects;
+        };
+      });
+      projectsApp.controller("ProjectsController", function($scope, projectsService) {
+        $scope.projects = projectsService.getProjects();
       });
     </script>
   </body>
