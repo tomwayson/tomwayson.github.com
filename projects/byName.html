@@ -1,0 +1,11 @@
+<div>
+  <label>Filter by Name:</label>
+  <input type="text" ng-model="filter.name" placeholder="Enter the name of a project">
+  <br />
+  <ul>
+    <li data-ng-repeat="project in projects | filter:filter.name | orderBy:'name'">{{ project.name }} - {{ project.employer }}
+      <br />
+      <small>{{ project.tags }}</small>
+    </li>
+  </ul>
+</div>

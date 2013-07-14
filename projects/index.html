@@ -1,0 +1,35 @@
+<!doctype html>
+<html ng-app="projectsApp">
+  <head>
+    <title>Tom Wayson - Projects</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
+  </head>
+  <body>
+    <!-- nav -->
+    <div><a href="#/">By Name</a> | <a href="#/search">By Tag</a></div>
+    <!-- placeholder for views -->
+    <div ng-view=""></div>
+    <script type="text/javascript">
+      var projectsApp = angular.module('projectsApp', []);
+      projectsApp.config(function ($routeProvider) {
+        $routeProvider
+          .when("/", {
+            controller: "ProjectsController",
+            templateUrl: "byName.html"
+          })
+          .when("/search", {
+            controller: "ProjectsController",
+            templateUrl: "byTag.html"
+          })
+          .otherwise({ redirectTo: "/" });
+      });
+      projectsApp.controller("ProjectsController", function($scope) {
+        $scope.projects = [
+          { name: "Landscape Modeler", employer: "Esri", tags: "javascript, arcgis, dojo" },
+          { name: "Oregon Imagery Explorer", employer: "Esri", tags: "javascript, arcgis, dojo" },
+          { name: "Community Maps", employer: "Esri", tags: "javascript, arcgis, dojo, bootstrap" }
+        ];
+      });
+    </script>
+  </body>
+</html>
