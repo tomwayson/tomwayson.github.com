@@ -1,11 +1,11 @@
+<h3>Projects</h3>
 <div>
-  <label>Filter by Name:</label>
-  <input type="text" ng-model="filter.name" placeholder="Enter the name of a project">
-  <br />
-  <ul>
-    <li data-ng-repeat="project in projects | filter:filter.name | orderBy:'name'"><a ng-href="#/details/{{project.id}}">{{ project.name }}</a> - {{ project.employer }}
-      <br />
-      <small>{{ project.tags }}</small>
-    </li>
-  </ul>
+  <label>Search:</label>
+  <input type="text" ng-model="filter.name" placeholder="javascript">
 </div>
+<ul>
+  <li data-ng-repeat="project in projects | filter:filter.name | orderBy:'name'"><a ng-href="#/details/{{project.id}}">{{ project.name }}</a> - {{ project.employer }}
+    <br />
+    <small>{{ project.tags }}</small>
+  </li>
+</ul>
