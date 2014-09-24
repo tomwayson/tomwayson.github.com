@@ -12,6 +12,14 @@ angular.module('tomwaysongithubcomApp', [
         templateUrl: 'views/main.html',
         controller: 'MainCtrl'
       })
+      .when('/starred', {
+        templateUrl: 'views/starred.html',
+        controller: 'StarredCtrl'
+      })
+      .when('/projects', {
+        templateUrl: 'views/projects.html',
+        controller: 'ProjectsCtrl'
+      })
       .otherwise({
         redirectTo: '/'
       });

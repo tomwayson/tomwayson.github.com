@@ -24,8 +24,31 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
     <![endif]-->
 
+    <!-- header -->
+    <div class="container">
+      <div class="header">
+        <ul class="nav nav-pills pull-right">
+          <li ng-class="{ active: page === 'home' }"><a ng-href="#">Home</a></li>
+          <li ng-class="{ active: page === 'projects' }"><a ng-href="#/projects">Projects</a></li>
+          <li ng-class="{ active: page === 'starred' }"><a ng-href="#/starred">Starred</a></li>
+        </ul>
+        <h3 class="text-muted">tomwayson.github.io</h3>
+      </div>
+    </div>
+
     <!-- Add your site or application content here -->
     <div class="container" ng-view=""></div>
+
+    <!-- footer -->
+    <div class="container">
+      <div class="footer">
+        <p class="pull-right">♥ to the Yeoman team!</p>
+        <div>
+          <a href="//github.com/tomwayson/"><span class="glyphicon glyphicon-user"></span> GitHub Profile</a> |
+          <a href="https://osrc.dfm.io/tomwayson/"><span class="glyphicon glyphicon-stats"></span> Open Source Report Card</a>
+        </div>
+      </div>
+    </div>
 
     <!-- Google Analytics: change UA-XXXXX-X to be your site's ID -->
      <script>
@@ -58,6 +81,9 @@
         <!-- build:js({.tmp,app}) scripts/scripts.js -->
         <script src="scripts/app.js"></script>
         <script src="scripts/controllers/main.js"></script>
+        <script src="scripts/services/githubservice.js"></script>
+        <script src="scripts/controllers/starred.js"></script>
+        <script src="scripts/controllers/projects.js"></script>
         <!-- endbuild -->
 </body>
 </html>

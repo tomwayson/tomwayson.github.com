@@ -1,0 +1,21 @@
+<div class="row">
+  <p class="col-md-8">Here are the {{starredRepos.length}} most recent repos that I've starred.</p>
+  <div class="col-md-4">
+  <input type="text" ng-model="searchText" class="form-control input-sm" placeholder="Search" />
+  </div>
+</div>
+<table class="table table-striped" style="margin-top: 20px">
+  <tr>
+    <th>Repo</th>
+    <th>Description</th>
+    <th>Language</th>
+    <th>Stargazers</th>
+  </tr>
+  <tr ng-repeat="repo in starredRepos | filter:searchText">
+    <td><a href="{{repo.html_url}}">{{repo.full_name}}</a></td>
+    <td>{{repo.description}}</td>
+    <td>{{repo.language}}</td>
+    <td>{{repo.stargazers_count}}</td>
+  </tr>
+</table>
+<p>See the <a href="https://github.com/stars/tomwayson">complete list on GitHub</a>.</p>
